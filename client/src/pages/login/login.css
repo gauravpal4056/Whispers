@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    height: 50px;
+    width: 200px;
+    color: white;
+    background-color: grey;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Tilt Warp', cursive;
+    cursor: pointer;
+    
+}
