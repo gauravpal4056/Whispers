@@ -9,10 +9,10 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback",
-    scope: [ 'profile' ]
+    scope: [ 'profile', 'email' ]
     },
     function(accessToken, refreshToken, profile, cb) {
-        cb(null, profile)
+        return cb(null, profile)
     }
 ));
 

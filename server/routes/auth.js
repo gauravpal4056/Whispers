@@ -7,12 +7,16 @@ const router = express.Router()
 router.get('/login/fail', (req,res) => {
     res.status(401).json({
         error: true,
-        message: "Log in failure "
+        message: "Log in failure from fail route"
     })
 })
 
 router.get('/login/success', (req,res) => {
     if(req.user){
+        console.log( req.user);
+        //User.find(googleId: req.user.id)//
+        //if user is found then return user 
+        //else redirect to create a new user
         res.status(200).json({
             error: false,
             message: "Log in successfully ",
@@ -20,14 +24,14 @@ router.get('/login/success', (req,res) => {
         })
     }
     else{
-        res.status(401).json({ error: true, message: "Log in failure "})
+        res.status(401).json({ error: true, message: "Log in failure from success route"})
     }
 })
 
 
 
 router.get('/google',
-    passport.authenticate('google', { scope: ['profile'] }));
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/callback', 
     passport.authenticate('google', {
@@ -36,7 +40,7 @@ router.get('/google/callback',
     
 );
 
-router.get('/logout', (req,res) => {
+router.get('/google/logout', (req,res) => {
     req.logout()
     res.redirect(process.env.CLIENT_URL)
 })

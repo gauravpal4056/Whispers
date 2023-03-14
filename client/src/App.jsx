@@ -8,9 +8,10 @@ function App() {
   const [user, setUser] = useState(null)
   const getUser = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/auth/login/success`)
-      const data = await res.json();
+      const url = `${import.meta.env.VITE_REACT_APP_API_URL}/auth/login/success`
+      const {data} = await axios.get(url , {withCredentials: true});
       setUser(data.user._json)
+      console.log(user);
     } catch (error) {
       console.log(error)
     }
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     getUser()
   }, [])
-
+  console.log(user);
   return (
     <div className="App">
       <Routes>
@@ -29,7 +30,7 @@ function App() {
         />
         <Route 
           exact path="/login" 
-          element = {user ? <Home user = {user}/> : <Login />}
+          element = {user ?  <Navigate to="/" /> : <Login />}
         />
       </Routes>
     </div>

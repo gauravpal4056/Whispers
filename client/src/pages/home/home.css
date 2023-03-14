@@ -3,12 +3,14 @@
 .container{
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0px;
 }
 .btn{
     height: 50px;
-    width: 200px;
+    width: 400px;
     color: white;
     background-color: grey;
     margin-left: auto;
