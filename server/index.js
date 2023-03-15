@@ -4,12 +4,17 @@ import cors from "cors";
 import dotenv from  "dotenv";
 import passport from "passport";
 import cookieSession from "cookie-session";
+import mongoose from "mongoose"
 import auth from "./routes/auth.js"
+import profile from "./routes/profile.js"
 import * as passportSetup from "./passport.js"
+
 const app = express();
 
 dotenv.config();
-app.use(bodyParser.urlencoded({extended: false}));  
+ 
+app.use(bodyParser.json({limit: "30mb", extended: true}));
+app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 app.use(
     cookieSession({
         name: "session",
@@ -29,13 +34,17 @@ app.use(
     })
 )
 
-
-
 app.use('/auth', auth)
+app.use('/profile', profile)
 
 
-
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-    console.log("listening on port " + port);
-})
+const PORT = process.env.PORT
+mongoose.set("strictQuery", false);
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(()=> {
+    app.listen(PORT, () => {
+        console.log("server started on port " + PORT);
+    })
+}).catch(err => console.log(err));
