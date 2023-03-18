@@ -6,6 +6,8 @@ const initialState = {
     googleId: "",
     inbox:[],
     sent:[],
+    roomName: "",
+    roomID: null,
 
 }
 
@@ -27,10 +29,14 @@ export const authSlice = createSlice({
         },
         setName: (state, action) => {
             state.name = action.payload
-        }
+        },
+        setRoomID: (state,  action) => {
+            state.roomID = action.payload
+        },
+        
     }
 })
 
-export const {setGoogleId, setUser, setInbox, setSent, setName} = authSlice.actions
+export const {setGoogleId, setUser, setInbox, setSent, setName, setRoomID } = authSlice.actions
 
 export default authSlice.reducer
