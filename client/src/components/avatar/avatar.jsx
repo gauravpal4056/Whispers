@@ -1,14 +1,15 @@
 import { createAvatar } from '@dicebear/core';
-import { adventurer } from '@dicebear/collection';
+import { adventurer, avataaars } from '@dicebear/collection';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBase, setSelectedAvatar } from '../../store/profileSlice';
 import { Avatar } from '@mui/material';
+import { setProfilePic } from '../../store/authSlice';
 
 const AvatarImg = (props) => {
     const dispatch = useDispatch()
     const [avatarUrl, setAvatarUrl] = useState("")
-    const avatar = createAvatar(adventurer, props.base);
+    const avatar = createAvatar(avataaars, props.base);
     const dataUri = async () => {
         const res = await avatar.toDataUri()
         setAvatarUrl(res)
@@ -23,28 +24,26 @@ const AvatarImg = (props) => {
                 <Avatar
                     alt="Remy Sharp"
                     src={avatarUrl}
-                    sx={{ width: 186, height: 186 }}
-                    onClick={() => {
-                        dispatch(setBase(props.base))
-                        dispatch(setSelectedAvatar(props.name))
-                        }}
+                    sx={{ width: {xs:200, md:256}, height: {xs:200, md:256}, }}
                 /> : props.name===selectedAvatar ? 
-                <Avatar
+                    <Avatar
                     alt="Remy Sharp"
                     src={avatarUrl}
-                    sx={{ width:76, height: 76, backgroundColor: "#E4DCCF" }}
+                    sx={{ width:82, height: 82 ,border:"2px solid red", borderRadius: "15px", }}
                     onClick={() => {
                         dispatch(setBase(props.base))
-                        dispatch(setSelectedAvatar(props.name))
+                        dispatch(setProfilePic(avatarUrl))
                     }}
-                /> : 
-                <Avatar
+                /> :
+
+                    <Avatar
                     alt="Remy Sharp"
                     src={avatarUrl}
-                    sx={{ width:76, height: 76 }}
+                    sx={{ width:86, height: 86, borderRadius: "15px", }}
                     onClick={() => {
                         dispatch(setBase(props.base))
                         dispatch(setSelectedAvatar(props.name))
+                        dispatch(setProfilePic(avatarUrl))
                     }}
                 />
             

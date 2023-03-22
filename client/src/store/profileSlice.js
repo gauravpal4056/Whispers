@@ -3,17 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     selectedAvatar: "",
     base:{
-        seed: "Felix",
-        earrings: ["variant01"],
-        eyebrows: ["variant01"],
-        eyes: ["variant01"],
-        features: ["blush"],
-        glasses: ["variant02"],
-        hair : ["long05"],
-        hairColor: ["e5d7a3"],
-        mouth: ["variant01"],
-        skinColor: ["ecad80"],
+        seed: "Aneka",
+        style: ["circle",],
+        accessoriesProbability: 100,
+        facialHairProbability: 100,
+        topProbability: 100,
+        backgroundColor: ["b6e3f4"]
     },
+    routedPage:"Whispers"
 
 }
 
@@ -26,10 +23,13 @@ export const profileSlice = createSlice({
         },
         setBase: (state, action) => {
             state.base = action.payload
+        },
+        setRoutedPage: (state, action) => {
+            state.routedPage = action.payload
         }
     }
 })
 
-export const { setSelectedAvatar, setBase } = profileSlice.actions
+export const { setSelectedAvatar, setBase, setRoutedPage } = profileSlice.actions
 
 export default profileSlice.reducer

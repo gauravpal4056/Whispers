@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap');
+
+
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  color: black;
+  background-color: #f4f6fa;
+  font-family: 'Oswald', sans-serif;
 }

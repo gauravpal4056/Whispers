@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     room: String,
     googleId: String,
     profilePicture: String,
+    gender:String,
     friends: [String],
 })
 const User = mongoose.model('User', userSchema)

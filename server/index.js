@@ -7,12 +7,13 @@ import cookieSession from "cookie-session";
 import mongoose from "mongoose"
 import auth from "./routes/auth.js"
 import profile from "./routes/profile.js"
+import createRoom from "./routes/createRoom.js"
 import * as passportSetup from "./passport.js"
 
 const app = express();
 
 dotenv.config();
- 
+
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 app.use(
@@ -36,6 +37,7 @@ app.use(
 
 app.use('/auth', auth)
 app.use('/profile', profile)
+app.use('/create', createRoom)
 
 
 const PORT = process.env.PORT

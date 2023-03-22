@@ -1,11 +1,13 @@
 import User from "../models/user.js";
 const create = async (req, res) => {
-    const {googleId, name, room} = req.body;
+    const {googleId, name, roomId, gender, profilePic} = req.body;
     try {
         const newUser = new User({
             googleId,
             name,
-            room
+            roomId,
+            gender,
+            profilePicture: profilePic
         })
         const savedUser = await newUser.save();
         console.log(googleId);
