@@ -4,7 +4,6 @@ const create = async (req, res) => {
 
     try {
         const existedRoom = await Room.findOne({ roomId: roomID})
-        console.log(existedRoom);
         if(existedRoom)
             res.status(400).json({ error: true, message: "already exists"})
         else{
@@ -13,7 +12,7 @@ const create = async (req, res) => {
                 roomID
             })
         await newRoom.save();
-            res.status(200).json({ error: true, message: "created Room"})
+            res.status(200).json({ error: false, message: "created Room"})
         }
 
     } catch (error) {

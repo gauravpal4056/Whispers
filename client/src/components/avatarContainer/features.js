@@ -14,7 +14,7 @@ const features =
 
 
 [
-    
+
     {name:"accessories", array: ["kurt","prescription01","prescription02", ""],},
     {name:"accessoriesColor", array: ["3c4f5c","65c9ff","262e33"],},
     {name: "clothesColor", array: ["3c4f5c","65c9ff","262e33", "ffafb9", "ffffb1", "ffffff"]},

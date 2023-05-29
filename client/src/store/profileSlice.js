@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     selectedAvatar: "",
     base:{
-        seed: "Aneka",
+        seed: "Felix",
         style: ["circle",],
         accessoriesProbability: 100,
         facialHairProbability: 100,
         topProbability: 100,
-        backgroundColor: ["b6e3f4"]
+
     },
-    routedPage:"Whispers"
+    routedPage:"Whispers",
 
 }
 
@@ -26,10 +26,14 @@ export const profileSlice = createSlice({
         },
         setRoutedPage: (state, action) => {
             state.routedPage = action.payload
-        }
+        },
+        setSelectedChat: (state, action) => {
+            state.selectedChat = action.payload
+        },
+
     }
 })
 
-export const { setSelectedAvatar, setBase, setRoutedPage } = profileSlice.actions
+export const { setSelectedAvatar, setBase, setRoutedPage, setSelectedChat } = profileSlice.actions
 
 export default profileSlice.reducer

@@ -1,6 +1,6 @@
 import "./login.css"
 
-
+import { Box, Button, CardMedia, Typography } from "@mui/material"
 const Login = () => {
 
     const login = () => {
@@ -10,9 +10,15 @@ const Login = () => {
         )}
     
 
-    return (<div className="container">
-        <button onClick={login} className="btn" >Sign in with google</button>
-    </div>)
+    return (
+        <>
+            <Box sx={{height:"100vh", width:"100%", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
+                <Typography sx={{fontFamily:"Rubik Iso",  }}  variant="h2">Whispers</Typography>
+                <CardMedia sx={{ minHeight: "50vh",width:{xs:"100%", md:"40vw"}  }} image="/homeBg.png" />
+                <Button onClick={login} variant="contained" >Login with Google</Button>
+            </Box>
+        </>
+    )
 }
 
 export default Login

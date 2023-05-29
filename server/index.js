@@ -8,7 +8,9 @@ import mongoose from "mongoose"
 import auth from "./routes/auth.js"
 import profile from "./routes/profile.js"
 import createRoom from "./routes/createRoom.js"
-import * as passportSetup from "./passport.js"
+import user from "./routes/user.js"
+import whispers from "./routes/whispers.js"
+import "./passport.js"
 
 const app = express();
 
@@ -35,11 +37,14 @@ app.use(
     })
 )
 
+//routes
 app.use('/auth', auth)
 app.use('/profile', profile)
 app.use('/create', createRoom)
+app.use('/user', user)
+app.use('/whispers', whispers)
 
-
+//data base and local host
 const PORT = process.env.PORT
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL, {

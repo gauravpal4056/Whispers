@@ -4,16 +4,19 @@ import Home from './pages/home/Home'
 import Profile from './pages/profile/profile'
 import Room from './pages/room/room'
 import CreateRoom from './pages/room/createRoom'
+import Sent from './pages/sent/sent'
 import { useEffect } from 'react'
 import { Navigate, Route, Routes,  } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { setName, setGoogleId, setUser } from './store/authSlice'
 import axios from "axios"
-import Name from './pages/profile/name'
 import Navbar from './components/navbar/navbar'
 import { createTheme, ThemeProvider } from '@mui/material';
-function App() {
+import Received from './pages/received/received'
+import Chat from './pages/chat/chatPage'
+import Create from './pages/create/create'
 
+function App() {
   const theme = createTheme({
     palette: {
       primary: {
@@ -40,8 +43,6 @@ function App() {
     try {
       const url = `${import.meta.env.VITE_REACT_APP_API_URL}/auth/login/success`
       const {data} = await axios.get(url , {withCredentials: true});
-      console.log(data);
-
       const res = data.user;
       if(data.exist){
         dispatch(setUser(res))
@@ -79,9 +80,21 @@ function App() {
               element = {user ? <Navigate to="/" /> : roomID ? <Profile /> : googleId ? <Navigate to="/room" /> : <Navigate to="/login" />}
             />
             <Route
-              exact path="profile/name" 
-              element = {user ? <Navigate to="/" /> : profilePic ? <Name/> : roomID ? <Navigate to="/profile" /> : googleId ? <Navigate to="/room" /> : <Navigate to="/login" />}
-          />
+              exact path="sent" 
+              element = {user ? <Sent /> : <Navigate to="/login" />}
+            />
+            <Route
+              exact path="received" 
+              element = {user ? <Received /> : <Navigate to="/login" />}
+            />
+            <Route
+              exact path="received/chat" 
+              element = {user ? <Chat /> : <Navigate to="/login" />}
+            />
+            <Route
+              exact path="create" 
+              element = {user ? <Create /> : <Navigate to="/login" />}
+            />
           </Route>
           <Route 
             exact path="/login" 

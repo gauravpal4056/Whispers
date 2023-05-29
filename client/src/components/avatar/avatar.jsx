@@ -1,5 +1,5 @@
 import { createAvatar } from '@dicebear/core';
-import { adventurer, avataaars } from '@dicebear/collection';
+import {  avataaars } from '@dicebear/collection';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBase, setSelectedAvatar } from '../../store/profileSlice';
@@ -32,10 +32,14 @@ const AvatarImg = (props) => {
                     sx={{ width:82, height: 82 ,border:"2px solid red", borderRadius: "15px", }}
                     onClick={() => {
                         dispatch(setBase(props.base))
+                        dispatch(setSelectedAvatar(props.name))
                         dispatch(setProfilePic(avatarUrl))
                     }}
+                /> : props.userPic ? <Avatar
+                    alt="Remy Sharp"
+                    src={avatarUrl}
+                    sx={{ width: "100%",height:"100%" }}
                 /> :
-
                     <Avatar
                     alt="Remy Sharp"
                     src={avatarUrl}

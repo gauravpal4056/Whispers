@@ -2,68 +2,93 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setRoutedPage } from "../../store/profileSlice"
 import "./home.css"
-import { Box, Typography, Avatar, Container,List, ListItem, ListItemAvatar, ListItemText } from "@mui/material"
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
+import { Box, Typography, Avatar,Chip, Container,List, ListItem, ListItemAvatar, ListItemText, CardMedia } from "@mui/material"
 import Divider from '@mui/material/Divider';
 import UserList from "../../components/userList/userList"
+import AvatarImg from "../../components/avatar/avatar"
+import axios from "axios"
+import { setUser } from "../../store/authSlice"
+
 
 const Home = () =>{
-
-    const dispatch = useDispatch()
+    const [selectedUser, setSelectedUser] = useState(null)
     const user = useSelector(state => state.auth.user)
-    const logout = () => {
-        window.open(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/auth/google/logout`,
-            "_self"
-        )}
+    const dispatch= useDispatch()
+    const getUser = async () => {
+        try {
+            const url = `${import.meta.env.VITE_REACT_APP_API_URL}/user/getUser/${user.googleId}`
+            const {data} = await axios.get(url);
+            console.log(data);
+            const res = data.user;
+            dispatch(setUser(res))
+        }catch (error) {
+            console.log(error)  
+        }
+    }
+
+    useEffect(()=>{
+        getUser()
+    },[])
+
+    const seeState=() => {
+        console.log(user);
+    }
     return (
-        <Box sx={{
-            height:"90vh", width:"100%", display:"flex", flexDirection:"row", justifyContent:{xs:"center", md:"space-evenly"}}}>
-
+        <Box sx={{overflow:"hidden"}}>
+            <Typography variant="h4" onClick={seeState} >Home</Typography>
+            <Box sx={{pt:4, borderRadius:"25px 25px 0 0 ", bgcolor:"#f7f6f0",height:"83vh", width:"100%", display:"flex", flexDirection:"row", justifyContent:{xs:"center", md:"space-evenly"}}}>
             <UserList />
-
-            <Box sx={{display:"flex", flexDirection:"column",}}>
-
-                <Box sx={{display:"flex", flexDirection:"row", m:2, justifyContent:"center", alignItems:"center", gap:4}}>
-                    <Avatar
-                        alt="Remy Sharp"
-                        src={user.profilePicture}
-                        sx={{ width: {xs:150, md:200}, height: {xs:150, md:200}, }}
-                    />
-                    <Box sx={{bgcolor:"#d7d9dd" , height:"100%", borderRadius:"25px",  display:"flex", flexDirection:"column"}}>
-                        <Typography variant="h5">Hey! asdasdsdds {user.name}</Typography>
+            <Box sx={{display:"flex", flexDirection:"column", }}>
+                <Box sx={{display:"flex", flexDirection:"row", margin:"10px 0",justifyContent:"center", alignItems:"center", }}>
+                    <Box sx={{height:"150px", width:"150px"}}><AvatarImg base={user.profileBase} userPic={true} /></Box>
+                    <Box sx={{width:"50%",bgcolor:"#202124" , color:"white", height:"100%",  display:"flex", flexDirection:"column", p:"0 9px", m:"0 9px", borderRadius:"25px"}}>
+                        <Typography sx={{textAlign:"left", m:1}} variant="h6">Hey! {user.name}</Typography>
+                        <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", gap:4}}>
+                            <Box sx={{display:"flex", }}>
+                                <CardMedia sx={{height:"30px", width:"30px"}} image="/logo/likes.png" />
+                                <Typography >Likes :</Typography>
+                            </Box>
+                            <Typography variant="h4" sx={{variant:"h2"}}>{user.likes}</Typography> 
+                        </Box>
+                        <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", gap:4}}>
+                            <Box sx={{display:"flex", }}>
+                                <CardMedia sx={{height:"26px", width:"26px"}} image="/logo/hates.png" />
+                                <Typography >Hates :</Typography>
+                            </Box>
+                            <Typography variant="h4" sx={{variant:"h2"}}>{user.hates}</Typography> 
+                        </Box>
                     </Box>
                 </Box>
                 <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between", gap:1, m:"0 9px"}} >
-                        <Box   sx={{p:1, bgcolor: '#ace941',display:"flex",flexDirection:"column", justifyContent:"space-between", height: 150, width:{xs:"50%"},borderRadius:"25px " }}>
+                        <Box   sx={{p:1, bgcolor: '#ace941', color:"black",display:"flex",flexDirection:"column", justifyContent:"space-between", height: 150, width:{xs:"50%"},borderRadius:"25px " }}>
                             <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between", p:1 }}>
-                                <Typography sx={{  textAlign:"left", fontSize:{xs:"15px", md:"20px"}}}  variant="p">Whispers you've sent</Typography>
+                                <Typography sx={{  textAlign:"left", fontSize:{xs:"15px", md:"15px"}}}  variant="p">Whispers you've sent</Typography>
                                 <img style={{width:"30px", height:"30px"}} src="/logo/sent2.png" />
                             </Box>
-                            <Typography variant="h4">111</Typography>
+                            <Typography variant="h4">{user.sent}</Typography>
                             <Typography sx={{fontFamily:"Rubik Iso",  }}  variant="h4">Sent</Typography>
                         </Box>
                         <Box sx={{p:1, bgcolor: '#b286fd', height: 150,width:{xs:"50%"},borderRadius:"25px",display:"flex",flexDirection:"column", justifyContent:"space-between",}} >
                             <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between",p:1}}>
-                                <Typography sx={{ color:"white",  textAlign:"left", fontSize:{xs:"15px", md:"20px"}}}  variant="p">Whispers You Received</Typography>
+                                <Typography sx={{ color:"white",  textAlign:"left", fontSize:{xs:"15px", md:"15px"}}}  variant="p">Whispers You Received</Typography>
                                 <img style={{width:"30px", height:"30px"}} src="/logo/received.png" />
                             </Box>
-                            <Typography  sx={{color:"white"}} variant="h4">111</Typography>
+                            <Typography  sx={{color:"white"}} variant="h4">{user.received}</Typography>
                             <Typography sx={{fontFamily:"Rubik Iso", color:"white",  }}  variant="h4">Received</Typography>
-
-                        </Box>             
+                        </Box>                                     
+                </Box>
+                <Box sx={{height:"100%",margin:"9px",bgcolor:"white", color:"black", borderRadius:"25px", marginBottom:"100px", display:"flex", flexDirection:"row", p:2,alignItems:"center"}} >
+                    <Box sx={{display:"flex", flexDirection:"column", p:1, }}>
+                        <Chip sx={{bgcolor:"#e277b7", color:"white",margin:"30px 0"}} icon={<CardMedia sx={{ height: "20px",width:"20px",   }} image="/homeCard.gif" />} label="Remember" />
+                        <Typography sx={{textAlign:"left"}} variant="h5">Don't Be a Bully !</Typography>
+                        <Typography sx={{textAlign:"left"}} >Try to have a good conversion.  Care for other</Typography>
+                    </Box>
+                    <CardMedia sx={{ p:2,height: "150px",width:"150px"  }} image="/homeCard.gif" />
                 </Box>
             </Box>
-
             <UserList />
-
+        </Box>
         </Box>
     )
 }
 export default Home
-
- {/* <button  className="btn" >Welcome</button>
-            <button  className="btn" >{user.name}</button>
-            <button  className="btn" >{user.googleId}</button>
-            <button  className="btn" onClick={logout} >Logout</button> */}
