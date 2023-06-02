@@ -43,8 +43,7 @@ const FinalCard = (props) => {
             });
         setKeywords(words)
         var query = keywords[0];
-        console.log(query);
-        const res = await client.photos.search({query, per_page: 1 })
+        const res = await client.photos.search({query,color:'green',order_by:"latest", per_page: 1 })
         setBg(res.photos[0].src.large)
     }
     const changewallpaper = async () => {

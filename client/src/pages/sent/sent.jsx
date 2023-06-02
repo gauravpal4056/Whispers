@@ -1,10 +1,11 @@
-import { Typography, Box, Avatar, List , Button, Drawer, ListItem, Divider, Stack  } from "@mui/material"
+import { Typography,Paper, Box, Avatar, List , Button, Drawer, ListItem, Divider, Stack  } from "@mui/material"
 import axios from "axios";
 import { useEffect, useState } from "react";   
 import { useDispatch, useSelector } from "react-redux";
 import Chat from "../../components/chat/chat";
 import WhisperCarousel from "../../components/whisperCarousel/whisperCarousel";
 import { setSent } from "../../store/authSlice";
+import Notifications from "../../components/notifications/notifications";
 
 
 
@@ -23,46 +24,39 @@ const Sent = () => {
 
     return (
         <>
-            <Box sx={{bgcolor:"black", height:"93vh", overflow:"hidden"}}>
-                <Typography variant="h4" >Sent</Typography>
-                <Box sx={{height:"100%", bgcolor:"#f7f6f0",borderRadius:"25px  25px 0 0", width:"100%", display:"flex", flexDirection:"row",justifyContent: 'space-evenly',}}>
-                <Box  
-                    sx={{
-                        width:"25%",
-                        display:{xs:"none", md:"flex"},
-                        flexDirection: 'column',
-                        borderRadius:"25px",
-                        zIndex:1000,
-                        pb:5,
-                    }}
-                > 
-                    <Typography variant="h4" sx={{m:2, color:"black",textAlign:"left"}} >Chat</Typography>
-                    {selectedUser&&<Chat />}
-                </Box>
-                <Divider orientation="vertical"  />
-                <Box sx={{ 
-                        display:{xs:"flex", md:"flex"}, 
-                        flexDirection: 'column',
-                        mt:4,
-                        gap:1,
-                        width:{xs:"100%", md:"40%"},
-                        borderRadius:"25px 25px 0 0",
+            <Paper sx={{
+                height:"91vh",  borderRadius:"25px 25px 0 0 ", pt:1, px:1,overflow:"hidden" 
+                }}>
+                <Box sx={{height:"100%",  width:"100%", display:"flex", flexDirection:"row",justifyContent: 'center', gap:4, }}>
+                    <Box  
+                        sx={{
+                            width:"23%",
+                            display:{xs:"none", md:"flex"},
+                            flexDirection: 'column',
+                            borderRadius:"25px",
+                            zIndex:1000,
+                            height:"80vh"
                         }}
                     >
-                    <Box sx={{borderRadius:"25px",   display:"flex", alignItems:"center"}}>
-                        <WhisperCarousel sent={true}  />
+                        <Chat />
                     </Box>
-                    {/* <Box sx={{width:"90%", height:"10vh", bgcolor:"black",borderRadius:"25px", m:2 }}></Box> */}
-                </Box>
-                <Divider orientation="vertical"  />
-                <Box sx={{width:"25%", display:{xs:"none", md:"block"},}}>
-                <Typography variant="h4" sx={{ textAlign:"left", color:"black"}} >Recent</Typography>
-                    <Box sx={{ height:"100%", bgcolor:"grey", m:1}}>
-                        
+                    <Box sx={{ 
+                            display:{xs:"flex", md:"flex"}, 
+                            flexDirection: 'column',
+                            gap:1,
+                            width:{xs:"100%",md:"30%"},
+                            borderRadius:"25px 25px 0 0",
+                            }}
+                        >
+                        <Typography sx={{textAlign:{xs:"left", md:"center"}, fontWeight: 'bold',}} variant="h3">Sent</Typography>
+                        <Box sx={{borderRadius:"25px",   display:"flex", alignItems:"center"}}>
+                            <WhisperCarousel sent={true}  />
+                        </Box>
+                        {/* <Box sx={{width:"90%", height:"10vh", bgcolor:"black",borderRadius:"25px", m:2 }}></Box> */}
                     </Box>
+                    <Notifications />
                 </Box>
-            </Box>
-        </Box>
+            </Paper>
         </>
     )
 }

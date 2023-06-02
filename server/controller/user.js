@@ -2,13 +2,12 @@ import User from "../models/user.js";
 
 export const getUser = async (req, res) => {
     const googleId = req.params.googleId;
-    console.log("getUserHit");
     try {
         const user = await User.findOne({ googleId:googleId})
         res.status(200).json({ error: false, message: "user Found", user:user})
     } catch (error) {
         console.log(error);
-        res.status(400).json({ error: true, message: "dataBase error creating room"})
+        res.status(400).json({ error: true, message: "dataBase error finding user"})
     }
 }
 

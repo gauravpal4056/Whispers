@@ -17,7 +17,12 @@ const WhisperCard= (props) => {
     const navigate = useNavigate()
     const sent = props.sent
     var date =  new Date(props.whisper.createdAt)
+
     const openChat = () => {
+        dispatch(setSelectedWhispers(props.whisper))
+        // navigate("chat")
+    }
+    const navigateChat = () => {
         dispatch(setSelectedWhispers(props.whisper))
         navigate("chat")
     }
@@ -70,7 +75,8 @@ const WhisperCard= (props) => {
                             <Box sx={{height:86, width:86}}><AvatarImg userPic={true} base={props.whisper.avatar} /></Box>
                             <Typography sx={{mt:1}} variant="p"  >{props.whisper.content}</Typography>
                         </Box>
-                        <Button sx={{bgcolor:"white", borderRadius:"15px", fontSize:"15px"}} onClick={openChat} >reply</Button>
+                        <Button sx={{bgcolor:"white", borderRadius:"15px", fontSize:"15px", display:{xs:"none", md:"block"}}} onClick={openChat} >reply</Button>
+                        <Button sx={{bgcolor:"white", borderRadius:"15px", fontSize:"15px", display:{md:"none"}}} onClick={navigateChat} >reply</Button>
                     </Box>
                 </Box>
             </Box>}

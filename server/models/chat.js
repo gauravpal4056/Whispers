@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 const chatSchema = new mongoose.Schema({
     whispersId: String,
     sender: String,
+    receiver: String,
     content: String,
 },
 {

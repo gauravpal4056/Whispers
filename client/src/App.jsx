@@ -1,25 +1,39 @@
 import './App.css'
+//modules
+import axios from "axios"
+import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes,  } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux"
+//pages
 import Login from './pages/login/Login'
 import Home from './pages/home/Home'
 import Profile from './pages/profile/profile'
 import Room from './pages/room/room'
 import CreateRoom from './pages/room/createRoom'
 import Sent from './pages/sent/sent'
-import { useEffect } from 'react'
-import { Navigate, Route, Routes,  } from 'react-router-dom'
-import { useSelector, useDispatch } from "react-redux"
-import { setName, setGoogleId, setUser } from './store/authSlice'
-import axios from "axios"
-import Navbar from './components/navbar/navbar'
-import { createTheme, ThemeProvider } from '@mui/material';
 import Received from './pages/received/received'
 import Chat from './pages/chat/chatPage'
 import Create from './pages/create/create'
+//slices
+import { setName, setGoogleId, setUser } from './store/authSlice'
+//component
+import Navbar from './components/navbar/navbar'
+//mui
+import { createTheme, ThemeProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import Outer from './components/navbar/outer'
+
 
 function App() {
+  const [mode, setMode] = useState(false)
+  const darkMode= (mode) => {
+    setMode(mode)
+  }
   const theme = createTheme({
     palette: {
+      mode: mode ? "dark" : "light",
       primary: {
+        
         // Purple and green play nicely together.
         main: "#9ac101",
       },
@@ -27,12 +41,8 @@ function App() {
         // This is green.A700 as hex.
         main: '#11cb5f',
       },
-    },
-    typography: {
-      fontFamily: [
-        ['Oswald', "sans-serif"],
-      ].join(','),
-    },});
+    }
+    ,});
 
   const user = useSelector((state) => state.auth.user)
   const googleId = useSelector((state) => state.auth.googleId)
@@ -63,10 +73,11 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Routes>
           <Route 
             exact path="/" 
-            element = {user || googleId ? <Navbar /> : <Navigate to="/login" />}
+            element = {user || googleId ? <Outer mode={mode} toggle={darkMode} /> : <Navigate to="/login" />}
           >
             <Route 
               index element={user ? <Home /> : googleId ?  <Navigate to="/room" /> : <Navigate to="/login" />}
@@ -94,6 +105,10 @@ function App() {
             <Route
               exact path="create" 
               element = {user ? <Create /> : <Navigate to="/login" />}
+            />
+            <Route
+              exact path="sent/chat" 
+              element = {user ? <Chat /> : <Navigate to="/login" />}
             />
           </Route>
           <Route 

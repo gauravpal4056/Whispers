@@ -13,11 +13,12 @@ export const getChats = async (req, res) => {
 }
 
 export const createChat = async (req, res) => {
-    const {senderId, whisperId, content} = req.body
+    const {senderId,receiverId, whisperId, content} = req.body
     try {
         const newChat = new Chat({
             whispersId:whisperId,
             sender:senderId,
+            receiver: receiverId,
             content
         })
         const chat = await newChat.save();
