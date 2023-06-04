@@ -121,7 +121,7 @@ const FinalCard = (props) => {
                         <Typography sx={{color:"black   "}} variant="h5" >{props.selectedUser.name}</Typography>
                     </Box>
                 </Box>
-                <Box  sx={{position:"relative",display:"flex",flexDirection:"column", backgroundImage:`url("${bg}")`, backgroundPosition:"center", backgroundSize:"cover", height:"47vh", borderRadius:"25px",width:'300px' }} >
+                <Box  sx={{position:"relative",display:"flex",flexDirection:"column", backgroundImage:`url("${bg}")`, backgroundPosition:"center", backgroundSize:"cover", height:"30vh", borderRadius:"25px",width:'300px' }} >
                     <Box onClick={changewallpaper} sx={{mx:1,height:'30px', cursor:"pointer", width:"30px", position:"absolute", top:0, right:0, color:'black', fontSize:"35px", '&:hover': {color: "pink",},}}>&#9728;</Box>
                     <Box sx={{display:"flex", m:3,flexDirection:"column", alignItems:"center",justifyContent:"center",height:"100%" ,gap:3  }}>
                             <Box sx={{bgcolor:"rgba(0,0,0,0.5)",borderRadius:"25px", p:2, display:"flex",alignItems:"center", gap:2,justifyContent:"center", flexDirection:"column" }}>
@@ -133,10 +133,10 @@ const FinalCard = (props) => {
                             </Box>
                         </Box>
                 </Box>
-                <form onSubmit={sendWhispers} style={{display:'flex', flexDirection:'row', gap:"10px", justifyContent:"space-between", }}>
+                <form onSubmit={sendWhispers} style={{display:'flex', flexDirection:'column', gap:"10px", justifyContent:"space-between", }}>
                     <input value={details} required={true} onChange={generateWallpaper}  style={{borderRadius:"15px", border:"0", padding:"14px", width:"100%"}} placeholder="What you say" />
                     {/* <Button onClick={generateWallpaper} sx={{bgcolor:"pink",color:"white", borderRadius:'15px'}} >Genrate</Button> */}
-                    <Button type="submit" sx={{borderRadius:"25px"}} variant="contained">Send</Button>
+                    <Button type="submit" sx={{borderRadius:"15px"}} variant="contained">Send</Button>
 
                 </form>
             </Box>

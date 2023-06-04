@@ -24,7 +24,7 @@ const AvatarImg = (props) => {
                 <Avatar
                     alt="Remy Sharp"
                     src={avatarUrl}
-                    sx={{ width: {xs:200, md:256}, height: {xs:200, md:256}, }}
+                    sx={{ width: {xs:180, md:230}, height: {xs:180, md:236}, }}
                 /> : props.name===selectedAvatar ? 
                     <Avatar
                     alt="Remy Sharp"

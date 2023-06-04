@@ -12,7 +12,6 @@ import Notifications from "../../components/notifications/notifications";
 const Sent = () => {
     const userId = useSelector(state => state.auth.user.googleId )
     const dispatch = useDispatch()
-    const selectedUser = useSelector(state => state.whisper.selectedUser)
     const getSentWhispers = async () => {
         const url = `${import.meta.env.VITE_REACT_APP_API_URL}/whispers/getSentWhispers/${userId}`
         const res = await axios.get(url)
@@ -25,7 +24,7 @@ const Sent = () => {
     return (
         <>
             <Paper sx={{
-                height:"91vh",  borderRadius:"25px 25px 0 0 ", pt:1, px:1,overflow:"hidden" 
+                height:"91vh",  borderRadius:"25px 25px 0 0 ", pt:4, px:1,overflow:"hidden" 
                 }}>
                 <Box sx={{height:"100%",  width:"100%", display:"flex", flexDirection:"row",justifyContent: 'center', gap:4, }}>
                     <Box  
@@ -35,7 +34,7 @@ const Sent = () => {
                             flexDirection: 'column',
                             borderRadius:"25px",
                             zIndex:1000,
-                            height:"80vh"
+                            height:"70vh",
                         }}
                     >
                         <Chat />

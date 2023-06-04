@@ -1,4 +1,4 @@
-import { Box, Typography, } from "@mui/material"
+import { Box, Typography,Paper } from "@mui/material"
 import { useSelector } from "react-redux"
 import SelectAvatar from "../../components/create/selectAvatar"
 import SelectUser from "../../components/create/selectUser"
@@ -13,12 +13,14 @@ const Create = () => {
     const [selectedUser, setSelectedUser] = useState(null)
     const [isSelectingAvatar, setIsSelectingAvatar] = useState(false)
     return (
-        <Box sx={{height:"93vh",width:"100%", overflow:"hidden"}} >
-        <Typography variant="h3" >Create</Typography>
-            <Box sx={{height:"100%", bgcolor:"#f7f6f0", overflow:"hidden", borderRadius:"25px 25px 0 0"}}>
+        <Paper sx={{
+            height:"91vh",  borderRadius:"25px 25px 0 0 ", pt:1, px:1,overflow:"hidden" 
+            }}>
+            <Typography sx={{textAlign:{xs:"left", md:"center"}, fontWeight: 'bold', p:1}} variant="h3">Create</Typography>
+            <Box sx={{height:"100%",  overflow:"hidden", borderRadius:"25px 25px 0 0"}}>
                 {selectedUser ? isSelectingAvatar ? <SelectAvatar setIsSelectingAvatar={setIsSelectingAvatar}  /> : <FinalCard setSelectedUser={setSelectedUser} selectedUser={selectedUser} setIsSelectingAvatar={setIsSelectingAvatar} /> : <SelectUser setSelectedUser={setSelectedUser} />}
             </Box>
-        </Box>
+        </Paper>
     )
 }
 

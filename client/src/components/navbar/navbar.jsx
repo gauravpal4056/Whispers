@@ -57,7 +57,7 @@ const Navbar = (props) => {
 
 
 
-            {user && <Box sx={{ height:"5.5em",position: 'fixed', bottom: 0, left: 0, right: 0,  display:"flex", justifyContent:"center", zIndex:99  }} >
+            {user && <Box sx={{ height:"5.5em",position: 'fixed', bottom: 0, left: 0, right: 0,  display:"flex", justifyContent:"center", zIndex:50  }} >
                         <Box sx={{display:"flex", justifyContent:"center", gap:4,borderRadius:"40px",padding:"10px 30px", m:2,bgcolor:"black"}}>
                             <Box onClick={handleClick} sx={{ display:"flex", flexDirection:"column", alignItems:"center", zIndex:200 }}>
                                 <Link to="/">{selected==="Home" ? <img name="Home" style={{height:"35px", width:"35px", }} src="/logo/home2S.png" /> : <img name="Home" style={{height:"35px", width:"35px",}} src="/logo/home2.png" />}</Link>

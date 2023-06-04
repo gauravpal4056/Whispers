@@ -8,8 +8,10 @@ import axios from "axios";
 import ReceiverChatBubble from "../chatBubble/receiverChatBubble";
 import SenderChatBubble from "../chatBubble/senderChatBubble";
 import { setChats } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Chat = () => {
+    const navigate = useNavigate(); 
     const [text, setText]  = useState("")
     const dispatch = useDispatch()
     const whisper = useSelector(state => state.whisper.selectedWhispers)
@@ -38,8 +40,8 @@ const Chat = () => {
     }
 
     useEffect(() => {
-        getChats()
-        getUser()
+        whisper&&getChats()
+        whisper&&getUser()
         console.log(chats);
     },[whisper ])
 
@@ -63,13 +65,17 @@ const Chat = () => {
         }
     }
 
+    const goBack = () => {
+        navigate(-1);
+    }
+
     return (
         <>
-            <Paper elevation={3} sx={{width:"100%",height:"100%", position:"relative", borderRadius:"25px 25px 0 0",p:1 }}>
+            <Paper elevation={3} sx={{width:"100%",height:"100%", position:"relative", borderRadius:"25px",p:1 }}>
                 {whisper ? 
                     <>
                         <Box sx={{ display:"flex",m:1, alignItems:"center", gap:1 ,}}>
-                        <ArrowBackIosIcon sx={{display:{md:"none"}}} />
+                        <ArrowBackIosIcon onClick={goBack} sx={{display:{md:"none"}}} />
                         {/* <AvatarImg base={whisper.avatar} /> */}
                         <Avatar />
                         <Box sx={{display:"flex", flexDirection:"column"}}>

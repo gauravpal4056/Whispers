@@ -18,14 +18,10 @@ const AvatarContainer = () => {
     return (
             <>
             <Box sx={{
-                        padding:{
-                            xs:"30px 0 0 0",
-                            md:"20px 120px 0 120px",  
-                            lg:"20px 200px  0 200px"                         
-                        },
+                        
                         width:{xs:"100vw", md:"70vw"},
             }}>
-                <Box sx={{backgroundColor: "white",  borderRadius:"25px "}}>
+                <Box sx={{backgroundColor: "#f6f6f6",  borderRadius:"25px ", overflow:"hidden"}}>
                 <Tabs
                     value={tab}
                     onChange={handleTab}
@@ -56,7 +52,7 @@ const AvatarContainer = () => {
 
                 { features.map((feature ) => {
                     return ((feature.name===tab) &&
-                            <Grid key={feature.name} sx={{ padding:"0 0 100px 0", margin:"100px", height:"40vh" ,  overflow: "hidden", overflowY: "scroll",  }} container spacing={{ xs: 2, md: 2}} columns={{ md: 16 }} >
+                            <Grid key={feature.name} sx={{ padding:"0 0 200px 0", margin:"100px", height:"40vh" , bgcolor:"#f6f6f6", overflow: "hidden", overflowY: "scroll",zIndex:57  }} container spacing={{ xs: 2, md: 2}} columns={{ md: 16 }} justifyContent="center" >
                             {feature.array.map((variant) => {
                                 const newBase = {...base, [feature.name]:[variant]}
                                 return (<Grid  item xs={3} sm={4} md={2} lg={2} sx={{paddding:"0 8px 0 8px"}}><AvatarImg name={variant} key={variant} base={newBase} /></Grid>)

@@ -14,9 +14,9 @@ const   SelectAvatar = (props) => {
     return (
         <>
             <Box>
-                <Typography variant="h3">Select your Face</Typography>
+                <Typography variant="h6">Select your Face</Typography>
                 <Box sx={{display:"flex",flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                    <Box sx={{display:"flex", alignItems:"center"}}>
+                    <Box sx={{display:"flex",flexDirection:"column", alignItems:"center"}}>
                         <AvatarImg icon={true} base={base} />
                         <Button onClick={createAvatar} variant="contained" sx={{m:1, height:"50px", fontSize:"25px", borderRadius:"20px"}} >Select</Button>
                     </Box>

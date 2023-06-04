@@ -44,24 +44,45 @@ const SelectUser = (props) => {
                     alignItems:"center"
                 }}
             >
-                <Typography variant="h4" sx={{m:2, color:"black"}}>Select a User</Typography>
-                <Box sx={{ width:"100%",height:"5vh",p:2, overflow:"hidden",  borderRadius:"30px",  backgroundColor:"#f7f6f0", display:"flex",alignItems:"center", flexDirection:"row",}}>
-                    <SearchOutlinedIcon sx={{color:"black", }} />
+                <Typography variant="h6" sx={{m:1, }}>Select a User</Typography>
+                <Box sx={{ width:"100%",p:2, overflow:"hidden", display:"flex",alignItems:"center", flexDirection:"row",}}>
+                    <SearchOutlinedIcon sx={{color:"#ace941" }} />
                     <input onChange={searchUser} placeholder="Find" className="find"
-                        style={{width:"100%", height:"100%", backgroundColor:"#ace941", border:"0px", borderRadius:"15px" ,color:"white",padding:"8px",fontSize:"20px", focused:{border:"0px"}}}
+                        style={{width:"100%", height:"50px",  border:"6px", borderRadius:"15px" ,color:"white",padding:"8px",fontSize:"20px", focused:{border:"0px"}}}
                     />
                 </Box>
-                <Box sx={{ width: '100%', maxWidth: 360,marginTop:"20px",bgcolor:"white", borderRadius:"25px" , overflow:"hidden",overflowY:"scroll", padding:1,color:"black",mb:"12vh"  }}>
+                <Box sx={{ width: '100%',height:"100%", maxWidth: 360,marginTop:"10px",bgcolor:"white", borderRadius:"25px" , overflow:"hidden",overflowY:"scroll", padding:1,color:"black",mb:"17vh"  }}>
                     <nav aria-label="main mailbox folders">
                         <List>
                             {users?.filter((user) => {
                                 return search.toLowerCase()==="" ? user : user.name.toLowerCase().includes(search) 
                             }).map((user) => {
                                 return (
-                                    <Box key={user._id} >
+                                    <>
+                                        <Box key={user._id} >
                                         <ListItem onClick={() => {selectUser(user)}} disablePadding>
                                             <ListItemButton>
-                                            <ListItemIcon sx={{width:86, height: 86,}} >
+                                            <ListItemIcon sx={{width:46, height: 46,}} >
+                                            <AvatarImg  userPic={true} base={user.profileBase} />
+                                            </ListItemIcon>
+                                            <ListItemText primary={user.name} secondary="offline" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                    </Box><Box key={user._id} >
+                                        <ListItem onClick={() => {selectUser(user)}} disablePadding>
+                                            <ListItemButton>
+                                            <ListItemIcon sx={{width:46, height: 46,}} >
+                                            <AvatarImg  userPic={true} base={user.profileBase} />
+                                            </ListItemIcon>
+                                            <ListItemText primary={user.name} secondary="offline" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                    </Box><Box key={user._id} >
+                                        <ListItem onClick={() => {selectUser(user)}} disablePadding>
+                                            <ListItemButton>
+                                            <ListItemIcon sx={{width:46, height: 46,}} >
                                             <AvatarImg  userPic={true} base={user.profileBase} />
                                             </ListItemIcon>
                                             <ListItemText primary={user.name} secondary="offline" />
@@ -69,6 +90,7 @@ const SelectUser = (props) => {
                                         </ListItem>
                                         <Divider />
                                     </Box>
+                                    </>
                                 )
                             })}
                         </List>
