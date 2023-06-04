@@ -45,7 +45,7 @@ app.use('/user', user)
 app.use('/whispers', whispers)
 
 //data base and local host
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000;
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
