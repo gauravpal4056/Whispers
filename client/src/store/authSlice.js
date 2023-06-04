@@ -6,6 +6,10 @@ const initialState = {
     googleId: "",
     inbox:[],
     sent:[],
+    roomName: "",
+    roomID: null,
+    profilePic: "",
+    chats:[],
 
 }
 
@@ -20,17 +24,27 @@ export const authSlice = createSlice({
             state.user = action.payload
         },
         setInbox: (state, action) => {
-            state.inbox = [...state.inbox, action.payload]
+            state.inbox = action.payload
         },
         setSent: (state, action) => {
-            state.inbox = [...state.sent, action.payload]
+            state.sent = action.payload
         },
         setName: (state, action) => {
             state.name = action.payload
+        },
+        setRoomID: (state,  action) => {
+            state.roomID = action.payload
+        },
+        setProfilePic: (state,  action) => {
+            state.profilePic = action.payload
+        },
+        setChats: (state, action) => {
+            state.chats = action.payload
         }
+        
     }
 })
 
-export const {setGoogleId, setUser, setInbox, setSent, setName} = authSlice.actions
+export const {setGoogleId, setUser, setInbox, setSent, setName, setRoomID, setProfilePic, setChats } = authSlice.actions
 
 export default authSlice.reducer

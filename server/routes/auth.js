@@ -16,7 +16,6 @@ router.get('/login/success', async (req,res) => {
     if(req.user){
         try {
             const existedUser = await User.findOne({googleId:req.user.id})
-            console.log(existedUser);
             if(existedUser){   
                 console.log("existedUser"); 
                 res.status(201).json({

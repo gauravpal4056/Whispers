@@ -7,12 +7,15 @@ import cookieSession from "cookie-session";
 import mongoose from "mongoose"
 import auth from "./routes/auth.js"
 import profile from "./routes/profile.js"
-import * as passportSetup from "./passport.js"
+import createRoom from "./routes/createRoom.js"
+import user from "./routes/user.js"
+import whispers from "./routes/whispers.js"
+import "./passport.js"
 
 const app = express();
 
 dotenv.config();
- 
+
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 app.use(
@@ -34,10 +37,14 @@ app.use(
     })
 )
 
+//routes
 app.use('/auth', auth)
 app.use('/profile', profile)
+app.use('/create', createRoom)
+app.use('/user', user)
+app.use('/whispers', whispers)
 
-
+//data base and local host
 const PORT = process.env.PORT
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL, {
