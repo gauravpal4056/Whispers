@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Typography, Box, Avatar, List , Button, Drawer, ListItem, Divider  } from "@mui/material"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
-import "./WhisperCard.css"
+import "./whisperCard.css"
 import { useNavigate } from "react-router-dom";
 import AvatarImg from "../avatar/avatar";
 import { useDispatch } from "react-redux";
