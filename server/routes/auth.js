@@ -13,7 +13,7 @@ router.get('/login/fail', (req,res) => {
 })
 
 router.get('/login/success', async (req,res) => {
-    if(req.user){
+    
         try {
             const existedUser = await User.findOne({googleId:req.user.id})
             if(existedUser){   
@@ -37,10 +37,7 @@ router.get('/login/success', async (req,res) => {
             console.log(error);
             res.status(400).json({ error: true, message: "dataBase error finding user"})
         }
-    }
-    else{
-        res.status(401).json({ error: true, message: "Log in failure from success route"})
-    }
+    
 })
 
 

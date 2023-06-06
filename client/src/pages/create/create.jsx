@@ -16,7 +16,7 @@ const Create = () => {
         <Paper sx={{
             height:"91vh",  borderRadius:"25px 25px 0 0 ", pt:1, px:1,overflow:"hidden" 
             }}>
-            <Typography sx={{textAlign:{xs:"left", md:"center"}, fontWeight: 'bold', p:1}} variant="h3">Create</Typography>
+            <Typography sx={{textAlign:{xs:"left", md:"center"}, fontWeight: 'bold', p:1 }} variant="h3">Create</Typography>
             <Box sx={{height:"100%",  overflow:"hidden", borderRadius:"25px 25px 0 0"}}>
                 {selectedUser ? isSelectingAvatar ? <SelectAvatar setIsSelectingAvatar={setIsSelectingAvatar}  /> : <FinalCard setSelectedUser={setSelectedUser} selectedUser={selectedUser} setIsSelectingAvatar={setIsSelectingAvatar} /> : <SelectUser setSelectedUser={setSelectedUser} />}
             </Box>
