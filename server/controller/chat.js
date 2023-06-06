@@ -2,7 +2,6 @@ import Chat from "../models/chat.js";
 
 export const getChats = async (req, res) => {
     const {whispersId } = req.params
-    console.log(whispersId);
     try {
         const chats = await Chat.find({ whispersId})
         res.status(200).json({ error: false, message: "chat Found", chats:chats})

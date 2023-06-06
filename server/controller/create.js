@@ -1,6 +1,5 @@
 import User from "../models/user.js";
 const create = async (req, res) => {
-    console.log("create User hit    ");
     const {googleId, name, roomId, gender, profileBase, likes, hates, received, sent} = req.body;
     try {
         const newUser = new User({

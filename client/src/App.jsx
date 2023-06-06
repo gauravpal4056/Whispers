@@ -47,23 +47,26 @@ function App() {
   const user = useSelector((state) => state.auth.user)
   const googleId = useSelector((state) => state.auth.googleId)
   const roomID = useSelector(state => state.auth.roomID)
-  const profilePic = useSelector(state => state.auth.profilePic)
   const dispatch = useDispatch()
   const getUser = async () => {
-    try {
-      const url = `${import.meta.env.VITE_REACT_APP_API_URL}/auth/login/success`
-      const {data} = await axios.get(url , {withCredentials: true});
-      const res = data.user;
-      if(data.exist){
-        dispatch(setUser(res))
+    const uid = localStorage.getItem("uid")
+    if(uid){
+      try {
+        const url = `${import.meta.env.VITE_REACT_APP_API_URL}/auth/checkUser/${uid}`
+        const {data} = await axios.get(url);
+        if(data.exist){
+          dispatch(setUser(data.user))
+          console.log(user_exists);
+        }
+        else{
+          dispatch(setGoogleId(data.uid))
+          dispatch(setName(data.displayName))
+        }
+      }catch (error) {
+        console.log(error)
       }
-      else{
-        dispatch(setGoogleId(res._json.sub))
-        dispatch(setName(res._json.name))
-      }
-    }catch (error) {
-      console.log(error)
     }
+    
   }
 
   useEffect(() => {

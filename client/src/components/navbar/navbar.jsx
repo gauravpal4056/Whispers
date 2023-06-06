@@ -20,11 +20,11 @@ const Navbar = (props) => {
         if(e.target.name)
             setSelected(e.target.name)
     }
+
     const logout = () => {
-        window.open(
-            `${import.meta.env.VITE_REACT_APP_API_URL}/auth/google/logout`,
-            "_self"
-        )}
+            localStorage.clear()
+            window.location.reload()
+    }
 
     return (
         <>

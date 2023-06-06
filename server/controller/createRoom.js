@@ -1,7 +1,6 @@
 import Room from "../models/room.js";
 const create = async (req, res) => {
     const { name, roomID} = req.body;
-
     try {
         const existedRoom = await Room.findOne({ roomId: roomID})
         if(existedRoom)
