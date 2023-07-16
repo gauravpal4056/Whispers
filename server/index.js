@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 
 app.use(
     cors({
-        origin: "https://wisprs.netlify.app",
+        origin: "http://localhost:5173",
         method:"GET,POST,PUT,DELETE ",
         credentials: true,
     })
