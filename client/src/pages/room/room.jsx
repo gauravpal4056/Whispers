@@ -75,7 +75,7 @@ const Room = () => {
                         {validRoom==="found" ? 
                             <CardMedia onClick={handleClick} sx={{ height:"100px",width:"100px", borderRadius:"100%",   }} image="/logo/go1.png" />
                         : <Box sx={{display:"flex", justifyContent:"center",alignItems:"center", gap:2, zIndex:99999,color:"white",p:3   }}>
-                            <input value={details} onChange={handleChange} style={{fontSize:"25px",width:"8em", height:"6vh", borderRadius:"15px", color:"white", background:"rgba(255,255,255,0.2)", border:"none", marginLeft:"9px"    }} type="number" placeholder="Enter room ID" />
+                            <input value={details} onChange={handleChange} style={{fontSize:"25px",width:"8em", height:"6vh", borderRadius:"15px", color:"white", background:"rgba(255,255,255,0.2)", border:"none", marginLeft:"9px"    }} type="number" placeholder="Room Id" />
                             <Button sx={{  fontSize:"25px", height:"6vh", borderRadius:"15px", color:"white"  }} onClick={handleClick} variant="contained">Find</Button>
                         </Box>}
                     </Box>

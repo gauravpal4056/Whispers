@@ -17,10 +17,7 @@ const AvatarContainer = () => {
 
     return (
             <>
-            <Box sx={{
-                        
-                        width:{xs:"100vw", md:"70vw"},
-            }}>
+            <Box sx={{width:{xs:"100vw", md:"70vw"}}}>
                 <Box sx={{backgroundColor: "#f6f6f6",  borderRadius:"25px ", overflow:"hidden"}}>
                 <Tabs
                     value={tab}
